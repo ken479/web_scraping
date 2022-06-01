@@ -1,6 +1,7 @@
 import argparse
 import os
 from scrapy.cmdline import execute
+import uuid
 
 parser = argparse.ArgumentParser(description='Web scrapping for sentences with emotions')
 parser.add_argument('--input', required=True)
@@ -16,7 +17,7 @@ try:
             'start_urls=' + arg.input,
             'spiders/emotion_scraper.py',
             '-o',
-            'sentence.csv'
+            'output/sentence_' + str(uuid.uuid4()) +  '.csv'
         ]
     )
 except SystemExit:
